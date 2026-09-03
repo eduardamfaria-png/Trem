@@ -13,10 +13,16 @@ export async function fetchUpdates(lineId) {
 }
 
 export async function postUpdate(lineId, payload) {
+  const formData = new FormData();
+  for (const [key, value] of Object.entries(payload)) {
+    if (key === "photo") continue;
+    if (value !== null && value !== undefined) formData.append(key, value);
+  }
+  if (payload.photo) formData.append("photo", payload.photo);
+
   const res = await fetch(`/api/lines/${lineId}/updates`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    body: formData,
   });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));

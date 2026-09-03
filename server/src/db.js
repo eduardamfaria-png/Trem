@@ -17,6 +17,7 @@ db.exec(`
     category TEXT NOT NULL,
     message TEXT,
     author_name TEXT,
+    photo_path TEXT,
     confirmations INTEGER NOT NULL DEFAULT 0,
     created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
   );
@@ -24,18 +25,30 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_updates_line_id ON updates (line_id);
 `);
 
+const existingColumns = db.prepare("PRAGMA table_info(updates)").all().map((c) => c.name);
+if (!existingColumns.includes("photo_path")) {
+  db.exec("ALTER TABLE updates ADD COLUMN photo_path TEXT");
+}
+
 const validLineIds = new Set(LINES.map((l) => l.id));
 
 export function isValidLine(lineId) {
   return validLineIds.has(lineId);
 }
 
-export function insertUpdate({ lineId, station, category, message, authorName }) {
+export function insertUpdate({ lineId, station, category, message, authorName, photoPath }) {
   const stmt = db.prepare(`
-    INSERT INTO updates (line_id, station, category, message, author_name)
-    VALUES (@lineId, @station, @category, @message, @authorName)
+    INSERT INTO updates (line_id, station, category, message, author_name, photo_path)
+    VALUES (@lineId, @station, @category, @message, @authorName, @photoPath)
   `);
-  const info = stmt.run({ lineId, station: station || null, category, message: message || null, authorName: authorName || null });
+  const info = stmt.run({
+    lineId,
+    station: station || null,
+    category,
+    message: message || null,
+    authorName: authorName || null,
+    photoPath: photoPath || null,
+  });
   return getUpdateById(info.lastInsertRowid);
 }
 
