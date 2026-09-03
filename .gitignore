@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.log
+.env
+.DS_Store
+
+# banco de dados local do servidor
+server/trem.db
+server/trem.db-shm
+server/trem.db-wal
+
+# fotos enviadas pelos usuários (conteúdo gerado em tempo de execução)
+server/uploads/*
+!server/uploads/.gitkeep
