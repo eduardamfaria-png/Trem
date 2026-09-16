@@ -1,0 +1,144 @@
+/* Fontes da marca — arquivos em /public/fonts */
+@font-face {
+  font-family: 'Bootzy TM';
+  src: url('/fonts/BootzyTM.ttf') format('truetype');
+  font-weight: 400 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'La Rousie';
+  src: url('/fonts/Rousie.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #ede0d2;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #e5215f;
+  text-decoration: none;
+}
+a:hover {
+  color: #fd5e12;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #c4a899;
+}
+
+/* Scroll interno das telas: sem barra visível, como no mock */
+.scr {
+  scrollbar-width: none;
+}
+.scr::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.riseIn {
+  animation: riseIn 0.5s ease both;
+}
+
+/* ---------------------------------------------------------------
+   Estados de hover / focus que no arquivo original eram declarados
+   via style-hover / style-focus. Mesmos valores, agora em CSS.
+   --------------------------------------------------------------- */
+
+.h-lift:hover {
+  transform: translateY(-2px);
+}
+.h-lift-3:hover {
+  transform: translateY(-3px);
+}
+.h-pink:hover {
+  border-color: #e5215f;
+  transform: translateY(-2px);
+}
+.h-orange:hover {
+  border-color: #fd5e12;
+  transform: translateY(-2px);
+}
+.h-plum:hover {
+  border-color: #3b0e1e;
+  color: #3b0e1e;
+}
+.h-plum-lift:hover {
+  border-color: #3b0e1e;
+  transform: translateY(-2px);
+}
+.h-plum-border:hover {
+  border-color: #3b0e1e;
+}
+.h-cta:hover {
+  background: #fd5e12;
+}
+.h-cta-lift:hover {
+  background: #fd5e12;
+  transform: translateY(-2px);
+}
+.h-blush:hover {
+  background: #ffb3c8;
+}
+.h-cream:hover {
+  background: #fff4e6;
+}
+.h-veil:hover {
+  background: rgba(255, 244, 230, 0.14);
+}
+.h-star:hover {
+  transform: scale(1.12);
+}
+
+.f-pink:focus {
+  border-color: #e5215f;
+}
+.f-pink:focus-within {
+  border-color: #e5215f;
+}
+
+/* ---------------------------------------------------------------
+   O mock é um aparelho de 390×844 sobre fundo creme. Em telas
+   estreitas ele passa a ocupar a viewport inteira — o conteúdo
+   interno é idêntico, só some a moldura.
+   --------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .stage {
+    padding: 0 !important;
+    min-height: 100dvh;
+  }
+  .phone {
+    width: 100vw !important;
+    height: 100dvh !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  .phone-caption {
+    display: none;
+  }
+}
