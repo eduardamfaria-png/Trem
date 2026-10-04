@@ -323,3 +323,73 @@ export const profiles: Record<'criadora' | 'marca', Profile> = {
     ],
   },
 };
+
+export type Notification = {
+  id: string;
+  ini: string;
+  avBg: string;
+  kind: 'match' | 'proposta' | 'pagamento' | 'mensagem' | 'campanha';
+  title: string;
+  text: string;
+  time: string;
+  href: string;
+  unread: boolean;
+};
+
+export const notifications: Notification[] = [
+  {
+    id: 'n1',
+    ini: 'MD',
+    avBg: '#FFB3C8',
+    kind: 'match',
+    title: 'Novo match',
+    text: 'Marina Duarte deu match com a sua campanha de sérum.',
+    time: 'há 12 min',
+    href: '/perfil/criadora',
+    unread: true,
+  },
+  {
+    id: 'n2',
+    ini: 'CV',
+    avBg: '#FFD9E3',
+    kind: 'proposta',
+    title: 'Proposta enviada',
+    text: 'Casa Verde Cosméticos enviou uma proposta: R$ 3.500 com 7 dias.',
+    time: 'há 40 min',
+    href: '/negociacao',
+    unread: true,
+  },
+  {
+    id: 'n3',
+    ini: 'SS',
+    avBg: '#FFB3C8',
+    kind: 'pagamento',
+    title: 'Pagamento liberado',
+    text: 'Sol & Sal liberou R$ 1.400 pelo job "Protetor com cor".',
+    time: 'há 2 h',
+    href: '/carteira',
+    unread: true,
+  },
+  {
+    id: 'n4',
+    ini: 'LB',
+    avBg: '#FFD9E3',
+    kind: 'campanha',
+    title: 'Candidatura em análise',
+    text: 'Lume Beauty está avaliando sua candidatura para a coleção de batons.',
+    time: 'há 5 h',
+    href: '/campanhas',
+    unread: false,
+  },
+  {
+    id: 'n5',
+    ini: 'JC',
+    avBg: '#FFB3C8',
+    kind: 'mensagem',
+    title: 'Nova mensagem',
+    text: 'Júlia Camargo: "Bora fazer um colab de skincare?"',
+    time: 'ontem',
+    href: '/chat',
+    unread: false,
+  },
+];

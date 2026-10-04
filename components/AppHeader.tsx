@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { C } from '@/lib/theme';
 
 /** Cabeçalho com logo e ações, usado nas telas de Feed e Explorar. */
@@ -38,7 +39,21 @@ export default function AppHeader() {
         >
           ?
         </div>
-        <div style={{ position: 'relative', width: 36, height: 36, borderRadius: 12, background: C.card, border: `1.5px solid ${C.hairline}` }}>
+        <Link
+          href="/notificacoes"
+          style={{
+            position: 'relative',
+            width: 36,
+            height: 36,
+            borderRadius: 12,
+            background: C.card,
+            border: `1.5px solid ${C.hairline}`,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <div style={{ width: 16, height: 16, borderRadius: '4px 4px 10px 10px', border: `2px solid ${C.plumSoft}`, borderBottom: 'none' }} />
           <div
             style={{
               position: 'absolute',
@@ -58,7 +73,7 @@ export default function AppHeader() {
           >
             3
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
